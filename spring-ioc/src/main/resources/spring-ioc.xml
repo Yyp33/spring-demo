@@ -1,11 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="dao.impl.UserOracleDaoImpl" id="userOracleDao"></bean>
+    <bean class="dao.impl.UserOracleDaoImpl" id="userOracleDao" name="userDao1"></bean>
     <bean class="service.impl.UserServiceImpl" id="userService">
+        <description>用来描述一个bean是做什么的</description>
         <property name="userDao" ref="userOracleDao"></property>
     </bean>
 
+    <!--用来设置别名, 即在使用过程中使用userService2与userService能够获取到相同的bean-->
+    <alias name="userService" alias="userService2"></alias>
+
+    <!--用来导入一个其他的spring的xml文件
+    <import resource="spring-ioc.xml"></import>-->
+
+    <!--*********************依赖注入-->
+    <!--基于set方法的依赖注入, 需要注入的属性对象必须含有set方法-->
+    <bean class="entity.User" id="user">
+        <property name="id" value="1"></property>
+        <property name="userName" value="测试set依赖注入"></property>
+    </bean>
+
+    <!--基于构造函数的依赖注入
+        1. 基于name属性设置构造函数
+        2. 可以省略name属性，但是一定要注意顺序，必须与构造方法中参数顺序一致
+        3. 如果不是用name 也可以使用index 参数下标从0开始，使用下标书写顺序可以随意，可以先赋值1，在赋值0
+    -->
+    <bean class="entity.User" id="user1">
+        <constructor-arg name="id" value="2"></constructor-arg>
+        <constructor-arg name="userName" value="测试构造函数注入"></constructor-arg>
+    </bean>
+    <bean class="entity.User" id="user2">
+        <constructor-arg index="1" value="测试构造函数注入"></constructor-arg>
+        <constructor-arg index="0" value="1"></constructor-arg>
+    </bean>
+
+    <!--复杂数据类型注入-->
+    <bean class="entity.Person" id="person">
+        <property name="id" value="1"></property>
+        <property name="name" value="复杂数据类型注入"></property>
+        <!--<property name="wife">
+            <bean class="entity.Wife" id="wife">
+                <property name="name" value="内部bean"></property>
+            </bean>
+        </property>
+         使用内部bean方式进行赋值，但是一般不使用，都是用下边的外部bean，因为其他bean使用
+        -->
+<!--        外部bean方式进行赋值引用-->
+        <property name="wife" ref="wife2"></property>
+        <property name="hobbies">
+            <list>
+                <value>ceshi1</value>
+                <value>ceshi2</value>
+<!--                <bean></bean> 如果list中是其他对象可以写多个bean，如果是string直接写value就可以了-->
+            </list>
+        </property>
+        <property name="course">
+            <map>
+                <entry key="1" value="ceshimap"></entry>
+                <entry key="2" value="ceshimap"></entry>
+<!--                <entry key-ref="userService" value-ref=""></entry>  如果key或value是对象则使用相应的引用-->
+            </map>
+        </property>
+
+        <property name="birthday">
+            <bean factory-bean="dateFormat" factory-method="parse">
+                <constructor-arg value="2015-12-31" />
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+
+    <bean class="entity.Wife" id="wife2">
+        <property name="name" value="外部bean"></property>
+    </bean>
+
+    <!--使用p命名空间简化基于setter属性注入xml的配置
+            bean标签中输入p， 按住alt+enter会自动生成命名空间
+            只能设置基本数据类型，以及对象的引用，如果有集合，就不支持
+        -->
+    <bean class="entity.Person" id="person1" p:id="2" p:name="自定义命名空间创建" p:wife-ref="wife2"></bean>
+
+    <!--使用c命名空间简化基于构造函数的属性注入
+            bean标签中输入c:， 按住alt+enter会自动生成命名空间
+            只能设置基本数据类型，以及对象的引用，如果有集合，就不支持
+        -->
+    <bean class="entity.User" id="user3" c:id="1" c:userName="c命名空间创建" ></bean>
 </beans>
