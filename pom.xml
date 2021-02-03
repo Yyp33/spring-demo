@@ -9,7 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>spring-ioc</module>
+        <module>spring-ioc-xml-base</module>
+        <module>spring-ioc-xml-high</module>
     </modules>
 
     <dependencies>
