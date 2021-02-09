@@ -18,9 +18,13 @@
     <!--怎么将一个类注册为bean
         1、配置扫描包 <context:component-scan >
         2、在对应的类上边增加相应的注解
+        使用上边的注解会自动将首字母小写并设置为bean的名字即id
     -->
     <context:component-scan base-package="com.yyp" use-default-filters="true">
-        <!--<context:exclude-filter type="aspectj" expression="org.springframework.stereotype.Controller"></context:exclude-filter>-->
-        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>-->
+    <!--<context:exclude-filter type="aspectj" expression="org.springframework.stereotype.Controller"></context:exclude-filter>-->
+    <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"></context:include-filter>-->
     </context:component-scan>
+
+    <!--引入属性文件，测试@value标签注入属性值-->
+    <context:property-placeholder location="db.properties"></context:property-placeholder>
 </beans>

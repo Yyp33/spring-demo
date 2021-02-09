@@ -1,4 +1,7 @@
 package com.yyp.spring.service;
 
-public interface UserService {
+import com.yyp.spring.Entity.User;
+
+public interface UserService extends BaseService<User> {
+    void getUser();
 }
