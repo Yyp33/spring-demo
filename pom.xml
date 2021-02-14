@@ -12,6 +12,7 @@
         <module>spring-ioc-xml-base</module>
         <module>spring-ioc-xml-high</module>
         <module>spring-ioc-xml.annotation</module>
+        <module>spring-ioc-javaconfig</module>
     </modules>
 
     <dependencies>
