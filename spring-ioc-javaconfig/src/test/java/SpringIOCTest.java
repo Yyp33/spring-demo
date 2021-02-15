@@ -1,3 +1,7 @@
+import com.second.config.TestSecondConfig;
+import com.yyp.spring.Entity.Person;
+import com.yyp.spring.Entity.Role;
+import com.yyp.spring.Entity.Wife;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -47,5 +51,49 @@ public class SpringIOCTest {
 
         DruidDataSource bean = context.getBean(DruidDataSource.class);
         System.out.println(bean);
+    }
+    /**
+     *测试通过@Import({IOCJavaConfigSecond.class})//引入其他javaConfig配置类
+     */
+    @Test
+    public void test04(){
+
+        TestSecondConfig bean = context.getBean(TestSecondConfig.class);
+        System.out.println(bean);
+    }
+
+    /**
+     *测试通过引入其他实体类注册为Bean
+     * @Import(Role.class)
+     */
+    @Test
+    public void test05(){
+
+        Role bean = context.getBean(Role.class);
+        System.out.println(bean);
+    }
+
+    /**
+     *测试@Import(MyImportSelector.class)
+     * 自定义Import需要实现ImportSelector接口选择器可一次性注入多个bean
+     */
+    @Test
+    public void test06(){
+
+        Person bean1 = context.getBean(Person.class);
+        Wife bean = context.getBean(Wife.class);
+        System.out.println(bean);
+        System.out.println(bean1);
+    }
+
+    /**
+     *测试@Import(MyImportBeanDefineRegister.class)
+     * 自定义beanDefine即定义bean，实现ImportBeanDefinitionRegistrar接口
+     */
+    @Test
+    public void test07(){
+
+        Person bean1 = context.getBean(Person.class);
+        System.out.println(bean1);
     }
 }

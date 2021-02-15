@@ -5,6 +5,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--扫描注解
+        但是使用注解时有如下注解可以对标标记为bean
+        @Controller 用于标记控制层的bean
+        @Service 用于标记业务逻辑层的bean
+        @Repository 用于标记数据访问层的bean
+        @Component 用于标记非三层的bean
+        这些用于标记哪些类，他们的作用都是相同的。控制层也可以使用@Service
+        优点：一、方便代码阅读 二、方便spring或者自己管理 比如我们写aop只限制使用service注解的类
         exclude-filter 用于设置可以排除的不用扫描的类
         include-filter 用于设置需要各位扫描的类
         类型：
