@@ -12,3 +12,12 @@
         (2)CGLIB动态代理：不需要接口
     Spring Aop是jdbc与cglib的结合，即AOP会判断当前需要代理的类是否实现了接口来判断是使用
     jdbc方式还是cglib方式动态创建代理类
+三、AOP简单使用，案例类：LogUtil
+    1、配置文件开启AOP功能
+        <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    2、切面类上增加@Aspect注解并且加入到spring容器@Component
+    3、配置通知，将注解配置到相应的方法上
+        @Before 前置通知
+        @After 后置通知
+        @AfterThrowing 后置异常通知
+        @AfterReturning 后置返回通知
