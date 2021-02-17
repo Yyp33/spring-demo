@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    扫描注解-->
+    <context:component-scan base-package="com.yyp">
+    </context:component-scan>
+
+<!--    开启AOP配置 注解方式，暂时注释掉，测试xml配置方式
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>-->
+<!--    AOP xml配置方式-->
+    <bean class="com.yyp.spring.aspect.LogUtilXML" id="logUtilXML"></bean>
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.yyp.spring.service..*.*(..))"/>
+        <aop:aspect ref="logUtilXML">
+            <aop:before method="start" pointcut-ref="pointcut"></aop:before>
+            <aop:after method="stop" pointcut-ref="pointcut" ></aop:after>
+            <aop:after-returning method="end" returning="result" pointcut-ref="pointcut"></aop:after-returning>
+        </aop:aspect>
+    </aop:config>
+</beans>
