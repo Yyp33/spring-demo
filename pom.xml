@@ -15,6 +15,7 @@
         <module>spring-ioc-javaconfig</module>
         <module>spring-aop-base</module>
         <module>spring-aop-high</module>
+        <module>spring-transaction</module>
     </modules>
 
     <dependencies>
