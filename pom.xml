@@ -14,6 +14,7 @@
         <module>spring-ioc-xml.annotation</module>
         <module>spring-ioc-javaconfig</module>
         <module>spring-aop-base</module>
+        <module>spring-aop-high</module>
     </modules>
 
     <dependencies>
