@@ -7,10 +7,9 @@ import java.util.Date;
 @Component
 public class User {
     private Integer id;
-    private String name;
-    private String desc;
-    private String gender;
-    private Date birthday;
+    private String realName;
+    private String cardNo;
+    private Integer balance;
 
     public Integer getId() {
         return id;
@@ -20,35 +19,37 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getCardNo() {
+        return cardNo;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setCardNo(String cardNo) {
+        this.cardNo = cardNo;
     }
 
-    public String getGender() {
-        return gender;
+    public Integer getBalance() {
+        return balance;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", realName='" + realName + '\'' +
+                ", cardNo='" + cardNo + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 }
