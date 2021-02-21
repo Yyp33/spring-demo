@@ -1,24 +1,29 @@
 package com.yyp.spring.controller;
 
-import com.yyp.spring.entity.Role;
-import com.yyp.spring.entity.User;
-import com.yyp.spring.entity.UserDto;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.yyp.spring.entity.User;
+import com.yyp.spring.entity.UserDto;
+
 /**
+ *
+ * 用于验证以及学习请求参数注入
+ *
  * 处理乱码
  * GET: 在Tomcat的server.xml的配置文件中Connector节点加入URIEncoding="UTF-8"
  * POST:方法使用spring提供的过滤器
  */
 
 @Controller
-public class HelloController {
+public class RequestParamsController {
 
     /**
      * RequestMapping 将方法映射给对应的url请求
