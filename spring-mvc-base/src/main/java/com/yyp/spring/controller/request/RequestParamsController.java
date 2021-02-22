@@ -1,4 +1,4 @@
-package com.yyp.spring.controller;
+package com.yyp.spring.controller.request;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
