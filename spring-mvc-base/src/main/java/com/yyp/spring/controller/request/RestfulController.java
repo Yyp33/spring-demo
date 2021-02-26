@@ -1,8 +1,14 @@
 package com.yyp.spring.controller.request;
 
-import com.yyp.spring.entity.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.yyp.spring.entity.User;
 
 /**
  * REST:一种客户端映射到服务端的架构设计
@@ -38,7 +44,7 @@ public class RestfulController {
     @GetMapping("/user/{id}")
     public String getUser(@PathVariable("id") Integer id){
         System.out.println("GET方式查询用户");
-        return "/index.jsp";
+        return "index";
     }
 
     /**
@@ -48,7 +54,7 @@ public class RestfulController {
     @PostMapping("/user")
     public String addUser(User user){
         System.out.println("POST方式增加用户");
-        return "/index.jsp";
+        return "index";
     }
 
     /**
@@ -59,7 +65,7 @@ public class RestfulController {
     @PutMapping("/user/{id}")
     public String modifyUser(User user){
         System.out.println("PUT方式增加用户");
-        return "/index.jsp";
+        return "index";
     }
 
     /**
@@ -69,7 +75,7 @@ public class RestfulController {
     @DeleteMapping("/user/{id}")
     public String deleteUser(@PathVariable("id") Integer id){
         System.out.println("DELETE方式增加用户");
-        return "/index.jsp";
+        return "index";
     }
 
 

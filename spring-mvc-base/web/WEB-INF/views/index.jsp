@@ -11,6 +11,6 @@
     <title>$Title$</title>
   </head>
   <body>
-  测试（非web-inf/views文件下的index界面）
+  测试
   </body>
 </html>

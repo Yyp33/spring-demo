@@ -16,4 +16,20 @@
     <mvc:annotation-driven></mvc:annotation-driven>
 <!--    注册静态资源-->
     <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+
+    <!--配置视图解析器 iewResolver
+        配置完成后通过controller返回的视图都会经过此视图解析器定位到/WEB-INF/views/文件夹下去寻到jsp
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--配置viewController
+        此配置的作用是提供用户可以直接访问jsp界面，不通过Controller转发，直接访问界面
+        path：是请求的url路径
+        view-name：jsp文件名称由于上边配置了视图解析可直接写文件名，view-controller走视图解析器，所以映射的界面必须在<property name="prefix" value="/WEB-INF/views/"/>配置的文件夹下
+        比如如下就是项目一开始启动就会直接访问index界面，这种直接访问的一般都是静态界面
+    -->
+    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
 </beans>

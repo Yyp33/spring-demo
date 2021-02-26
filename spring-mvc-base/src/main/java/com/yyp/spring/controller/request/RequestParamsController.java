@@ -36,7 +36,7 @@ public class RequestParamsController {
 
         //redirect 重定向
         //forward 转发 默认方式
-        return "redirect:index.jsp";
+        return "redirect:/index.jsp";
     }
 
     /**
@@ -52,7 +52,7 @@ public class RequestParamsController {
     @RequestMapping("/params01")
     public String params01(Integer age){
         System.out.println(age);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -68,7 +68,7 @@ public class RequestParamsController {
     @RequestMapping("/params02")
     public String params02(@RequestParam(value = "userName",required = false, defaultValue = "222") String name){
         System.out.println(name);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -84,7 +84,7 @@ public class RequestParamsController {
     @RequestMapping("/params03")
     public String params03(User user){
         System.out.println(user);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -100,7 +100,7 @@ public class RequestParamsController {
     @RequestMapping("/params04")
     public String params04(UserDto userDto){
         System.out.println(userDto);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -112,7 +112,7 @@ public class RequestParamsController {
     @RequestMapping("/header")
     public String header(@RequestHeader("Host") String host){
         System.out.println(host);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -125,7 +125,7 @@ public class RequestParamsController {
     @RequestMapping("/cookie")
     public String cookie(@CookieValue("JSESSIONID") String cookie){
         System.out.println(cookie);
-        return "index.jsp";
+        return "index";
     }
 
     /**
@@ -137,6 +137,6 @@ public class RequestParamsController {
      */
     @RequestMapping("/servlet")
     public String servlet(HttpServletRequest request, HttpServletResponse response, HttpSession session){
-        return "index.jsp";
+        return "index";
     }
 }

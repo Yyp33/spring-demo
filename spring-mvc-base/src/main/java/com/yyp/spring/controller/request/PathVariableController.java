@@ -1,10 +1,10 @@
 package com.yyp.spring.controller.request;
 
-import com.yyp.spring.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.w3c.dom.UserDataHandler;
+
+import com.yyp.spring.entity.User;
 
 /**
  * @PathVariable: 用于获取请求路径url中的参数,并自动注入到方法的参数中
@@ -37,7 +37,7 @@ public class PathVariableController {
         System.out.println("基本数据类型获取url参数");
         System.out.println(id);
         System.out.println(name);
-        return "/index.jsp";
+        return "index";
     }
 
     /**
@@ -49,6 +49,6 @@ public class PathVariableController {
     public String path02(User user){
         System.out.println("自定义数据类型数据类型获取url参数");
         System.out.println(user);
-        return "/index.jsp";
+        return "index";
     }
 }
