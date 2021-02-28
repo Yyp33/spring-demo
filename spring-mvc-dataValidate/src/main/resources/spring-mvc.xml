@@ -32,19 +32,5 @@
         比如如下就是项目一开始启动就会直接访问index界面，这种直接访问的一般都是静态界面
     -->
     <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
-
-<!--    配置自定义类型转换器
-    1 配置自定义类型转换器到默认的类型转换集合中
-    2 配置到<mvc:annotation-driver>中生效
-
-    注意如果使用了@NumberFormat和@DateTimeFormat数据格式话，在需要配置自定义转化器时需要将ConversionServiceFactoryBean
-    改为FormattingConversionServiceFactoryBean
--->
-    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService2">
-        <property name="converters">
-            <set>
-                <ref bean="myConversion"></ref>
-            </set>
-        </property>
-    </bean>
+    <mvc:view-controller path="/add" view-name="add"></mvc:view-controller>
 </beans>
