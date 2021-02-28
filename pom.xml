@@ -16,7 +16,10 @@
         <module>spring-aop-base</module>
         <module>spring-aop-high</module>
         <module>spring-transaction</module>
-        <module>spring-mvc-base</module>
+        <module>spring-mvc-request</module>
+        <module>spring-mvc-response</module>
+        <module>spring-mvc-conversion</module>
+        <module>spring-mvc-dataValidate</module>
     </modules>
 
     <dependencies>
@@ -62,6 +65,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>5.2.3.RELEASE</version>
+        </dependency>
+<!--        类属性校验多用于表单提交后台校验-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.1.0.Final</version>
         </dependency>
     </dependencies>
 </project>

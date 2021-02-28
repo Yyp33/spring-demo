@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--    扫描包-->
+    <context:component-scan base-package="com.yyp"></context:component-scan>
+<!--    mvc注解驱动，增加此配置会自动注入handlerMapping以及handlerAdapter实现类，
+    可以让一些springMVC特别定义的功能生效，强化映射增加一些功能映射返回功能
+    如果没有使用这个标签，而仅仅是使用<context:component-scan/>标签扫描并注册了相关的注解类到bean中
+    ，那么相关的细节功能并不能使用（@Controller @RequestMapping等基本功能除外）
+    ，比如返回类型的定义；@RestController；date类型格式转化注解@DateTimeFormat或者静态资源映射等 。
+    <context:component-scan/>标签只是注册bean，<mvc:annotation-driven/>则是告诉框架让这些注解生效，是递进关系。
+-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+<!--    注册静态资源-->
+    <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+
+
+</beans>
