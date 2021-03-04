@@ -31,6 +31,5 @@
         view-name：jsp文件名称由于上边配置了视图解析可直接写文件名，view-controller走视图解析器，所以映射的界面必须在<property name="prefix" value="/WEB-INF/views/"/>配置的文件夹下
         比如如下就是项目一开始启动就会直接访问index界面，这种直接访问的一般都是静态界面
     -->
-    <mvc:view-controller path="/" view-name="index"></mvc:view-controller>
-    <mvc:view-controller path="/add" view-name="add"></mvc:view-controller>
+    <mvc:view-controller path="/" view-name="json"></mvc:view-controller>
 </beans>

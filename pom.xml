@@ -20,6 +20,7 @@
         <module>spring-mvc-response</module>
         <module>spring-mvc-conversion</module>
         <module>spring-mvc-dataValidate</module>
+        <module>spring-mvc-json</module>
         <module>spring-mvc-file</module>
     </modules>
 
