@@ -23,6 +23,7 @@
         <module>spring-mvc-json</module>
         <module>spring-mvc-file</module>
         <module>spring-mvc-interceptor</module>
+        <module>spring-mvc-i18n</module>
     </modules>
 
     <dependencies>
