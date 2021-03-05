@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<!--    扫描包-->
+    <context:component-scan base-package="com.yyp"></context:component-scan>
+<!--    mvc注解驱动，增加此配置会自动注入handlerMapping以及handlerAdapter实现类，
+    可以让一些springMVC特别定义的功能生效，强化映射增加一些功能映射返回功能
+    如果没有使用这个标签，而仅仅是使用<context:component-scan/>标签扫描并注册了相关的注解类到bean中
+    ，那么相关的细节功能并不能使用（@Controller @RequestMapping等基本功能除外）
+    ，比如返回类型的定义；@RestController；date类型格式转化注解@DateTimeFormat或者静态资源映射等 。
+    <context:component-scan/>标签只是注册bean，<mvc:annotation-driven/>则是告诉框架让这些注解生效，是递进关系。
+-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+<!--    注册静态资源
+    <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>-->
+
+    <!--配置视图解析器 iewResolver
+        配置完成后通过controller返回的视图都会经过此视图解析器定位到/WEB-INF/views/文件夹下去寻到jsp
+    -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--配置viewController
+        此配置的作用是提供用户可以直接访问jsp界面，不通过Controller转发，直接访问界面
+        path：是请求的url路径
+        view-name：jsp文件名称由于上边配置了视图解析可直接写文件名，view-controller走视图解析器，所以映射的界面必须在<property name="prefix" value="/WEB-INF/views/"/>配置的文件夹下
+        比如如下就是项目一开始启动就会直接访问index界面，这种直接访问的一般都是静态界面
+    -->
+    <mvc:view-controller path="/success" view-name="success"></mvc:view-controller>
+
+    <mvc:interceptors>
+        <!--此配置会拦截所有的mvc请求-->
+        <bean class="com.yyp.spring.interceptor.MyInterceptor"></bean>
+        <!--此配置可以配置拦截哪些请求，以及排除哪些请求-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"></mvc:exclude-mapping>
+            <bean class="com.yyp.spring.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

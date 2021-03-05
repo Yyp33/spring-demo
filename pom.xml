@@ -22,6 +22,7 @@
         <module>spring-mvc-dataValidate</module>
         <module>spring-mvc-json</module>
         <module>spring-mvc-file</module>
+        <module>spring-mvc-interceptor</module>
     </modules>
 
     <dependencies>
