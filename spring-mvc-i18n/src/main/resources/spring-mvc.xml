@@ -52,19 +52,29 @@
     然后结合请求中携带的浏览器的语言种类
     读取相应的资源文件，渲染jsp页面，进行不同的语言展示-->
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
-        <property name="basename" value="login"></property>
+        <property name="basenames">
+            <array>
+                <value>login</value>
+            </array>
+        </property>
         <!--编码方式需要与资源文件编码方式相同-->
         <property name="defaultEncoding" value="utf-8"></property>
     </bean>
 
     <!--自定义区域语言解析器
     <bean class="com.yyp.spring.resolver.MyLocaleResolver" id="localeResolver"></bean>-->
-    <!--使用springmvc提供的SessionLocaleResolver区域语言解析器-->
+    <!--如果不配置默认使用AcceptHeaderLocaleResolver，获取浏览器发送请求头中的语言
+        使用springmvc提供的SessionLocaleResolver区域语言解析器代替默认的，获取session中的locale信息，设置整个会话中都使用设置的语言
+        比如在首页点击重中文转为英文，那么后边的所有页面都应该是英文
+
+        二：如何将local信息写入session中一个是自定义方法实现，或者使用spring提供的拦截器LocaleChangeInterceptor，使用拦截器时，
+        参数名称必须是local 参数值必须以_分割，比如en_US
+        -->
     <bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver" id="localeResolver">
 
     </bean>
     <mvc:interceptors>
-        <!--通过拦截器进行重写request中的locale对象-->
+        <!--通过拦截器进行重写request中的locale值设置到session中-->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
     </mvc:interceptors>
 
