@@ -50,7 +50,7 @@
 
     <!--配置国际化资源文件前缀，使得ResourceBundleMessageSource可以根据配置的前缀，
     然后结合请求中携带的浏览器的语言种类
-    读取相应的资源文件，渲染jsp页面，进行不同的语言展示-->
+    读取相应的资源文件，渲染jsp页面，进行不同的语言展示，规范jsp文件名与相应的资源文件名相同-->
     <bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
         <property name="basenames">
             <array>

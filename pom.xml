@@ -24,6 +24,7 @@
         <module>spring-mvc-file</module>
         <module>spring-mvc-interceptor</module>
         <module>spring-mvc-i18n</module>
+        <module>spring-mvc-exception</module>
     </modules>
 
     <dependencies>
